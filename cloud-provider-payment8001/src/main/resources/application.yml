@@ -27,13 +27,18 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      # defaultZone: http://www.eureka7001.com:7001/eureka/,http://www.eureka7002.com:7002/eureka/
-      # defaultZone: http://eureka7001.com:7001/eureka/
-      defaultZone: http://localhost:7001/eureka/
+      # 集群版~
+       defaultZone: http://www.eureka7001.com:7001/eureka/,http://www.eureka7002.com:7002/eureka/
+      # 改了hosts的 defaultZone: http://eureka7001.com:7001/eureka/
+      #defaultZone: http://localhost:7001/eureka/
 
   instance:
     ip-address: 127.0.0.1
+    # eureka上显示的主机名称
     instance-id: payment8001
+    # 访问路径可以显示ip地址
     prefer-ip-address: true
+    # eureka客户端向服务端发送心跳的时间间隔，单位为秒
     lease-renewal-interval-in-seconds: 1
+    # eureka服务端在收到最后一次心跳后等待时间上限，单位为秒，超时剔除服务~
     lease-expiration-duration-in-seconds: 2

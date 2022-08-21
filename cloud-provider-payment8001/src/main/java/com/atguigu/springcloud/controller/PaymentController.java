@@ -31,6 +31,7 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+    // 通过服务发现获得该服务的信息。
     @Resource
     private DiscoveryClient discoveryClient;
 
@@ -59,10 +60,12 @@ public class PaymentController {
 
     @GetMapping("discovery")
     public Object discovery() {
+        // 得到发现的所有服务都有啥~【服务清单有哪些】
         List<String> services = discoveryClient.getServices();
         services.forEach(service->{
             System.out.println("----service"+service);
         });
+        // 发现这个服务的实例都有哪些~~。
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
         for (ServiceInstance instance : instances) {
             System.out.println(instance.getServiceId()+"\t" + instance.getHost()+"\t"+ instance.getPort()+"\t"+instance.getUri());;
