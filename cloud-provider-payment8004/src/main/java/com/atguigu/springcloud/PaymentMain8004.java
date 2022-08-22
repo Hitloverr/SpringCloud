@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
+// 向consul或者zookeeper作为注册中心时注册服务
 @EnableDiscoveryClient
 public class PaymentMain8004 {
 
