@@ -11,6 +11,7 @@ public class MyLB implements LoadBalaner {
 
     private AtomicInteger atomicInteger = new AtomicInteger(0);
 
+    // 自旋增加访问次数~。
     public final int getIncrement() {
         int current;
         int next;

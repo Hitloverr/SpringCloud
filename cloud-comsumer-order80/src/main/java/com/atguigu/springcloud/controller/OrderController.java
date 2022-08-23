@@ -33,15 +33,18 @@ public class OrderController {
     }
     @GetMapping("payment/selectOne/{id}")
     public CommonResult<Payment> getPayment(@PathVariable("id") long id) {
+        // restTemplate.getForEntity().getStatusCode()
         return restTemplate.getForObject(PAYENT_URL+"/payment/selectOne/"+id,CommonResult.class);
     }
 
     @GetMapping("payment/lb")
     public String getPaymentLB() {
+        // 通过服务发现得到实例列表
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
         if (instances == null || instances.size() == 0) {
             return null;
         }
+        // 得到实际访问的实例节点。
         ServiceInstance serviceInstance = loadBalaner.instance(instances);
         URI uri = serviceInstance.getUri();
         System.out.println(uri+"/payment/lb");
