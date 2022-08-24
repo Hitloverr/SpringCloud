@@ -8,7 +8,9 @@ eureka:
     register-with-eureka: false
 #设置feign客户端超时时间
 ribbon:
+  # 建立连接用的时间
   ReadTimeout: 5000
+  # 建立连接后从服务器读取到可用资源的时间
   ConnectTimeout: 5000
 logging:
   level:
