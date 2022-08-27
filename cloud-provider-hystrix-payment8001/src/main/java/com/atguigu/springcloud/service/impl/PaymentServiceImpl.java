@@ -44,9 +44,10 @@ public class PaymentServiceImpl implements PaymentService {
             @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds",value = "10000"), //时间窗口期
             @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage",value = "60"),//失败率达到多少后跳闸
 
-    }
+        }
     )
     public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+        // 出事了就降级。
         if (id<0) {
             throw new RuntimeException("******id不能为负数");
         }

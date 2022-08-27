@@ -1,6 +1,7 @@
 package com.atguigu.springcloud.controller;
 
 import com.atguigu.springcloud.service.PaymentHystrixService;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("order")
+@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
 public class OrderController {
 
     @Resource
@@ -39,5 +41,15 @@ public class OrderController {
 
     public String paymentInfo_ERROR_Handler(@PathVariable("id") Integer id){
         return "80____paymentInfo_ERROR_Handler___异常返回";
+    }
+
+
+    /**
+     * 全局fallback
+     *
+     * @return
+     */
+    public String payment_Global_FallbackMethod() {
+        return "Global异常处理信息,请稍后重试.o(╥﹏╥)o";
     }
 }
