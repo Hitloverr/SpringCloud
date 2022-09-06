@@ -56,6 +56,7 @@ public class FlowLimitController {
         return "testHotKey-------";
     }
 
+    // 热点key被限流后端的方法。
     public String deal_testHotKet(String p1, String p2, BlockException e) {
         return "----deal_testHotKet,------";
     }
